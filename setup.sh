@@ -63,6 +63,7 @@ EOL
 
 # Create a sample index.html template
 cat > views/index.html << 'EOL'
+{{ block index }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,6 +77,7 @@ cat > views/index.html << 'EOL'
     <h1>Welcome to Go + HTMX App</h1>
 </body>
 </html>
+{{ end }}
 EOL
 
 # Create a sample css static file
