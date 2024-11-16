@@ -63,7 +63,7 @@ EOL
 
 # Create a sample index.html template
 cat > views/index.html << 'EOL'
-{{ block index }}
+{{ block "index" . }}
 <!DOCTYPE html>
 <html lang="en">
 <head>
