@@ -16,7 +16,7 @@ fi
 
 # Create project structure
 echo -e "${GREEN}Creating project structure...${NC}"
-mkdir -p cmd views
+mkdir -p cmd views static/css
 
 # Create main.go
 cat > cmd/main.go << 'EOL'
@@ -48,6 +48,7 @@ func NewTemplates() *Templates {
 func main() {
 	e := echo.New()
 	e.Use(middleware.Logger())
+	e.Static("/static", "static")
 	
 	t := NewTemplates()
 	e.Renderer = t
@@ -69,11 +70,20 @@ cat > views/index.html << 'EOL'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Go + HTMX App</title>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link href="/static/css/styles.css" rel="stylesheet">
 </head>
 <body>
     <h1>Welcome to Go + HTMX App</h1>
 </body>
 </html>
+EOL
+
+# Create a sample css static file
+
+cat > static/css/styles.css << 'EOL'
+body {
+    background: red;
+}
 EOL
 
 # Initialize go module
